@@ -1,0 +1,126 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Log Viewer API",
+    "version": "1.0.0",
+    "description": "Reads local `.log` files and exposes them for the web UI."
+  },
+  "servers": [
+    {
+      "url": "/",
+      "description": "Current host (e.g. http://localhost:3000)"
+    }
+  ],
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Health check",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ok": { "type": "boolean", "example": true }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/logs": {
+      "get": {
+        "summary": "List parsed log entries",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": { "type": "integer", "minimum": 1, "default": 1 }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": { "type": "integer", "minimum": 1, "default": 50 }
+          },
+          {
+            "name": "source",
+            "in": "query",
+            "description": "Filter by log file name (e.g. nginx.log)",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "level",
+            "in": "query",
+            "description": "Filter by level (e.g. INFO, WARN, ERROR)",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "keyword",
+            "in": "query",
+            "description": "Substring match on raw log line",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated logs",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/LogsResponse" }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorBody" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "LogItem": {
+        "type": "object",
+        "properties": {
+          "timestamp": { "type": "string" },
+          "level": { "type": "string" },
+          "message": { "type": "string" },
+          "raw": { "type": "string" },
+          "source": { "type": "string", "description": "Log file basename" }
+        }
+      },
+      "LogsResponse": {
+        "type": "object",
+        "properties": {
+          "page": { "type": "integer" },
+          "pageSize": { "type": "integer" },
+          "total": { "type": "integer" },
+          "sources": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "items": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/LogItem" }
+          }
+        }
+      },
+      "ErrorBody": {
+        "type": "object",
+        "properties": {
+          "message": { "type": "string" },
+          "error": { "type": "string" }
+        }
+      }
+    }
+  }
+}

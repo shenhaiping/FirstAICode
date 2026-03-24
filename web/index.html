@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Log Viewer</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>Log Viewer</h1>
+      <form id="filters" class="filters">
+        <label>
+          Source
+          <select id="source" name="source">
+            <option value="">ALL</option>
+          </select>
+        </label>
+        <label>
+          Level
+          <select id="level" name="level">
+            <option value="">ALL</option>
+            <option value="INFO">INFO</option>
+            <option value="WARN">WARN</option>
+            <option value="ERROR">ERROR</option>
+            <option value="COMPOSER 2">composer 2</option>
+          </select>
+        </label>
+        <label>
+          Keyword
+          <input id="keyword" name="keyword" placeholder="Search logs..." />
+        </label>
+        <button type="submit">Search</button>
+      </form>
+
+      <section class="meta">
+        <span id="summary">Loading...</span>
+      </section>
+
+      <table>
+        <thead>
+          <tr>
+            <th class="col-source">Source</th>
+            <th>Timestamp</th>
+            <th>Level</th>
+            <th>Message</th>
+          </tr>
+        </thead>
+        <tbody id="logsBody"></tbody>
+      </table>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+  </html>

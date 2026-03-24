@@ -1,0 +1,112 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f6f7fb;
+  color: #20232a;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 24px auto;
+  padding: 0 16px 24px;
+}
+
+h1 {
+  margin: 0 0 16px;
+}
+
+.filters {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 14px;
+}
+
+input,
+select,
+button {
+  height: 34px;
+  padding: 6px 10px;
+  border: 1px solid #cbd2e0;
+  border-radius: 6px;
+}
+
+button {
+  cursor: pointer;
+  background: #3757f5;
+  color: #fff;
+  border: none;
+}
+
+.meta {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+th,
+td {
+  border: 1px solid #e5e7eb;
+  text-align: left;
+  padding: 10px;
+  font-size: 14px;
+}
+
+th {
+  background: #f2f4f8;
+}
+
+.col-source,
+.source-cell {
+  width: 1%;
+  white-space: nowrap;
+  font-size: 12px;
+  color: #4b5563;
+}
+
+.message-cell {
+  max-width: 520px;
+  word-break: break-word;
+  font-size: 13px;
+}
+
+.level-UNKNOWN {
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.level-INFO {
+  color: #0b7a35;
+  font-weight: 600;
+}
+
+.level-WARN {
+  color: #b26a00;
+  font-weight: 600;
+}
+
+.level-ERROR {
+  color: #bf1f1f;
+  font-weight: 600;
+}
+
+.level-COMPOSER-2 {
+  color: #4f46e5;
+  font-weight: 600;
+}

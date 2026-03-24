@@ -1,0 +1,10 @@
+{
+  "name": "log-viewer-workspace",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "install:all": "npm --prefix server install",
+    "dev": "npm --prefix server run dev",
+    "start": "npm --prefix server run start"
+  }
+}
